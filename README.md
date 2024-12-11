@@ -17,11 +17,11 @@ Setting keyboard rgb as dynamic:
 Some things can be bugprone, feel free to report issues from here.
 
 To-do: Implementing the turbo mode in NitroSense
-      Making turbo button usable \n
-      Making nitrosense button usable \n
-      Making a dkms module \n
-      Adding to Aur \n
-      Making a CTL(planning nitroctl) and writing a systemctl and openrc service to start this automatically and remember the settings every boot. \n
+      Making turbo button usable 
+      Making nitrosense button usable 
+      Making a dkms module 
+      Adding to Aur 
+      Making a CTL(planning nitroctl) and writing a systemctl and openrc service to start this automatically and remember the settings every boot. 
 
 NOTE: This driver is experimental and can be dangereous, i am taking no responsibility.
   
