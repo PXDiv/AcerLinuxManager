@@ -6,13 +6,10 @@ Thanks to https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard
 
 <p>Usage:<br>
 Setting fan speeds<br>
-*Cpu Fan(Left) echo fan-fan1-{fanspeed} /dev/acergaming<br>
-*Gpu Fan(Right) echo fan-fan2-{fanspeed} /dev/acergaming<br>
+*Cpu Fan(Left) echo {fanspeed} /dev/fan1<br>
+*Gpu Fan(Right) echo {fanspeed} /dev/fan2<br>
 Note: the fan speed should be multiples of 128. eg. 128 256 512 768<br>
-Setting keyboard rgb as 4 zone (Note: In the stupidly original NitroSense app there is we cant set different zones to different colors when using the dynamic animations, but here we can do.)<br>
-echo 4zone-{zone}-{red}-{green}-{blue}<br>
-Setting keyboard rgb as dynamic:<br>
-echo dyn-{mode}-{speed}-{brightness}-{direction}-{red}-{green}-{blue}<p/>
+
 
 Some things can be bugprone, feel free to report issues from here.
 
