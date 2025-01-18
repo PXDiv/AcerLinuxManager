@@ -18,7 +18,7 @@ Making turbo button usable <br>
 Making nitrosense button usable <br>
 Making a dkms module <br>
 Adding it to Aur <br>
-Making a CTL(planning nitroctl) and writing a systemctl and openrc service to start this automatically and remember the settings every boot. </p>
+Writing a daemon and writing services for both systemctl and openrc service to set and remember the settings every boot. </p>
 
 NOTE: This driver is experimental and can be dangereous, i am taking no responsibility.
   
