@@ -1,8 +1,7 @@
 # AcerNitroLinuxGamingDriver
 An experimental driver to set fan speeds, and the keyboard rgb on linux.
 
-Thanks to https://github.com/tuxedocomputers/tuxedo-drivers for a starting point to new device based wmi drivers on linux kernel.
-Thanks to https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module for setting 4zone keyboard rgb.
+Thanks to https://github.com/tuxedocomputers/tuxedo-drivers for a starting point to new device based wmi drivers on linux kernel and https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module for setting 4zone keyboard rgb.
 
 <p>Usage:<br>
 Setting fan speeds<br>
@@ -17,7 +16,7 @@ Some things can be bugprone, feel free to report issues from here.
 Making turbo button usable <br>
 Making nitrosense button usable <br>
 Making a dkms module <br>
-Adding it to Aur <br>
+Adding it to aur <br>
 Writing a daemon and writing services for both systemctl and openrc service to set and remember the settings every boot. </p>
 
 NOTE: This driver is experimental and can be dangereous, i am taking no responsibility.
