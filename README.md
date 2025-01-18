@@ -6,8 +6,8 @@ Thanks to https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard
 
 <p>Usage:<br>
 Setting fan speeds<br>
-*Cpu Fan(Left) echo {fanspeed} /dev/fan1<br>
-*Gpu Fan(Right) echo {fanspeed} /dev/fan2<br>
+*Cpu fan(left) echo {fanspeed} /dev/fan1<br>
+*Gpu fan(right) echo {fanspeed} /dev/fan2<br>
 Note: the fan speed should be multiples of 128. eg. 128 256 512 768<br>
 
 
