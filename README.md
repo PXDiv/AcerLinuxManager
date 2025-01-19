@@ -19,5 +19,5 @@ Making a dkms module <br>
 Adding it to aur <br>
 Writing a daemon and writing services for both systemctl and openrc service to set and remember the settings every boot. </p>
 
-NOTE: This driver is experimental and can be dangereous, i am taking no responsibility.
+NOTE: This driver is experimental and it can be dangereous, i am taking no responsibility.
   
