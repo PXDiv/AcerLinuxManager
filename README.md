@@ -1,6 +1,6 @@
 # **Acer Nitro & Predator Fan Control (Linux)**
 
-A GUI-based front end for managing fan speeds on Acer Nitro and Predator laptops running Linux. This tool simplifies driver handling and fan speed control, improving usability over the original drivers.
+A GUI-based front end for managing fan speeds on Acer Nitro and Predator laptops running Linux. This tool simplifies driver handling and fan speed control.
 
 ## **About This Project**
 This project is a fork of [AcerNitroLinuxGamingDriver](https://github.com/DetuxTR/AcerNitroLinuxGamingDriver) and introduces a GUI frontend along with several new features. The GUI is very basic but functional, ensuring ease of use.
