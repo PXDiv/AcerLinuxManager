@@ -10,7 +10,9 @@ This project is a fork of [AcerNitroLinuxGamingDriver](https://github.com/DetuxT
 ✅ Automatically compile and load drivers  
 ✅ Unload and clean drivers when needed  
 ✅ Auto-load drivers on frontend startup (optional)  
-✅ Save and restore settings for convenience  
+✅ Save and restore settings for convenience
+✅ Reports Current CPU and GPU Temprature
+✅ Reports Current RPM values for fans
 
 ## **Installation & Setup**
 
@@ -40,10 +42,7 @@ This project is a fork of [AcerNitroLinuxGamingDriver](https://github.com/DetuxT
 - Enable **Auto-Load Drivers** to load pre-compiled drivers on frontend startup.
 
 ### **4. Troubleshooting**
-- If the `make` command fails, manually navigate to the `NitroDrivers` directory, open a terminal, and run:
-  ```bash
-  make
-  ```
+- If the `make` command fails, manually navigate to the `NitroDrivers` directory, open a terminal, and run: "make"
 - If you encounter errors, try restarting your system and ensure the correct Linux headers are installed.
 - For any `make` errors, search online for a solution relevant to your kernel version.
 
