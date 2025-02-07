@@ -6,13 +6,13 @@ A GUI-based front end for managing fan speeds on Acer Nitro and Predator laptops
 This project is a fork of [AcerNitroLinuxGamingDriver](https://github.com/DetuxTR/AcerNitroLinuxGamingDriver) and introduces a GUI frontend along with several new features. The GUI is very basic but functional, ensuring ease of use.
 
 ## **Features**
-✅ Change fan speeds easily  
-✅ Automatically compile and load drivers  
-✅ Unload and clean drivers when needed  
-✅ Auto-load drivers on frontend startup (optional)  
-✅ Save and restore settings for convenience
-✅ Reports Current CPU and GPU Temprature
-✅ Reports Current RPM values for fans
+ - ✅ Change fan speeds easily  
+ - ✅ Automatically compile and load drivers  
+ - ✅ Unload and clean drivers when needed  
+ - ✅ Auto-load drivers on frontend startup (optional)
+ - ✅ Save and restore settings for convenience
+ - ✅ Reports Current CPU and GPU Temprature
+ - ✅ Reports Current RPM values for fans
 
 ## **Installation & Setup**
 
