@@ -4,6 +4,7 @@ import os
 import json
 import elevate
 import DriverManager
+import HardwareStatus
 
 # Config file path
 CONFIG_FILE = "fan_config.json"
@@ -18,6 +19,9 @@ tempGPUValue = minSpeedValue
 svAllFanSliderValue = minSpeedValue
 svCPUFanSliderValue = minSpeedValue
 svGPUFanSliderValue = minSpeedValue
+
+currentCPUTemp = 40
+currentGPUTemp = 40
 
 
 def save_settings():
@@ -199,11 +203,24 @@ def check_root():
         print("Acquired Root Privileges")
     else:
         messagebox.showerror(message="Root Privilages not aquired, Run the app with sudo")
+        
+def update_info():
+    """Update temperature and fan speed labels."""
+    global currentCPUTemp, currentGPUTemp
+    currentCPUTemp = HardwareStatus.get_cpu_temp()
+    currentGPUTemp = HardwareStatus.get_gpu_temp()
+    
+    
+    cpuTempLabel.config(text=f"CPU Temp: {HardwareStatus.get_cpu_temp()}°C | Fan Speed: {HardwareStatus.get_cpu_fan_speed()} RPM")
+    gpuTempLabel.config(text=f"GPU Temp: {HardwareStatus.get_gpu_temp()}°C | Fan Speed: {HardwareStatus.get_gpu_fan_speed()} RPM")
+    # fanSpeedLabel.config(text=f"Fan Speeds: {HardwareStatus.get_fan_speed()} RPM")
+
+    root.after(1000, update_info)  # Refresh every second
 
 elevate.elevate(graphical=False)
 check_root()
 
-# Create the main window
+## Create the main window
 root = tk.Tk()
 _loadDriversOnStart = tk.BooleanVar()
 root.title("Acer WMI Control")
@@ -211,14 +228,24 @@ root.geometry("1200x1000")
 
 load_settings_values()
 
-topLabel = ttk.Label(root, text="Acer WMI Driver Controls", font=("bold", 16))
+# Top Info 
+topLabel = ttk.Label(root, text="Acer Linux Manager", font=("bold", 16))
 topLabel.pack(pady=20)
 
-cpuFanSpeedPercentageLabel = ttk.Label(root, text="Configure and set the correct min and max fan speed range (Multiples of 128)")
-cpuFanSpeedPercentageLabel.pack(pady=10)
+infoFrame = tk.Frame(root)
+cpuTempLabel = ttk.Label(infoFrame, text="CPU Temp")
+gpuTempLabel = ttk.Label(infoFrame, text="GPU Temp")
 
-gpuFanSpeedPercentageLabel = ttk.Label(root, text="Incorrect values may set the fan speed to 0 and cause damage")
-gpuFanSpeedPercentageLabel.pack(pady=(10, 30))
+cpuFanSpeedPercentageLabel = ttk.Label(infoFrame, text="Configure and set the correct min and max fan speed range (Multiples of 128)")
+cpuFanSpeedPercentageLabel.grid(row=3)
+
+gpuFanSpeedPercentageLabel = ttk.Label(infoFrame, text="Incorrect values may set the fan speed to 0 and cause damage")
+gpuFanSpeedPercentageLabel.grid(row=4)
+
+
+cpuTempLabel.grid(row=1)
+gpuTempLabel.grid(row=2)
+infoFrame.pack(pady=(0,20))
 
 notebook = ttk.Notebook(root)
 
@@ -316,5 +343,6 @@ setVisualValuesFromSave()
 
 if _loadDriversOnStart.get() == True:
     DriverManager.load_driver()
-    
+
+update_info()
 root.mainloop()

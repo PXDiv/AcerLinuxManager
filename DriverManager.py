@@ -31,7 +31,6 @@ def remove_fan_control_files():
             subprocess.run(["sudo", "rm", "-f", fan])
 
 def compile_driver():
-# elevate.elevate()
     """Compile the driver if not already compiled."""
     if not os.path.exists(MODULE_PATH):
         messagebox.showinfo(message="Driver not compiled. Running make...")
