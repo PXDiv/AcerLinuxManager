@@ -1,8 +1,6 @@
 import os
 import subprocess
-import tkinter as tk
 from tkinter import messagebox
-import elevate
 
 DRIVER_DIR = "NitroDrivers"
 MODULE_NAME = "acer_nitro_gaming_driver2.ko"
