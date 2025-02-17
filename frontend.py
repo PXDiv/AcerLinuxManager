@@ -24,6 +24,11 @@ svGPUFanSliderValue = minSpeedValue
 currentCPUTemp = 40
 currentGPUTemp = 40
 
+dynamicModeRefreshTime = 5
+
+###
+###                                         Loading and Saving Functions:
+###
 
 def save_settings():
     """Save the current settings to a JSON file."""
@@ -114,6 +119,12 @@ def setVisualValuesFromSave():
                 
                 print("Values Set!")
                 
+
+
+         
+###
+###                                                 Fan Speed Functions
+###
 
 def SetFanSpeed(fanNo, fanSpeed):
     if 0 < int(fanNo) < 3:
@@ -254,11 +265,14 @@ def update_info():
 # Boolean variable to enable/disable dynamic fan control
 dynamic_speed_set = False
 
+lastfanspeed = [minSpeedValue,minSpeedValue]
+
 def dynamicFanSpeedSet():
     if not dynamic_speed_set.get():  # Check if dynamic speed control is enabled
         print("Dynamic Mode Not Enabled")
         return
 
+    global lastfanspeed
     # Get current CPU and GPU temperatures
     cpu_temp = currentCPUTemp  # Assuming this is updated elsewhere in your code
     gpu_temp = currentGPUTemp  # Assuming this is updated elsewhere in your code
@@ -294,17 +308,22 @@ def dynamicFanSpeedSet():
                 continue  # Ignore invalid inputs
         return minSpeedValue  # Default to minimum speed if no match found
 
-    # Set CPU and GPU fan speeds
+    # Set CPU and GPU fan speeds variables
     cpu_fan_speed = get_fan_speed(cpu_temp, cpu_steps)
     gpu_fan_speed = get_fan_speed(gpu_temp, gpu_steps)
 
     # Apply fan speeds using SetFanSpeed(FanNo, FanSpeed)
-    SetFanSpeed(1, cpu_fan_speed)  # Fan No. 1 = CPU Fan
-    SetFanSpeed(2, gpu_fan_speed)  # Fan No. 2 = GPU Fan
+    if lastfanspeed[0] != cpu_fan_speed:
+        SetFanSpeed(1, cpu_fan_speed)  # Fan No. 1 = CPU Fan
+        lastfanspeed[0] = cpu_fan_speed
+        
+    if lastfanspeed[1] != gpu_fan_speed:
+        SetFanSpeed(2, gpu_fan_speed)  # Fan No. 2 = GPU Fan
+        lastfanspeed[1] = gpu_fan_speed
 
     # Schedule next execution if dynamic control is enabled
     if dynamic_speed_set.get():
-        root.after(5000, dynamicFanSpeedSet)  # Run every 2 seconds
+        root.after(dynamicModeRefreshTime * 1000, dynamicFanSpeedSet)  # Run every 2 seconds
 
 # Function to toggle dynamic fan speed setting
 def toggleDynamicFanSpeed():
