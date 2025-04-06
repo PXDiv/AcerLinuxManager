@@ -1,5 +1,23 @@
 # **Acer Nitro & Predator Fan Control (Linux)**
 
+### ⚠️ Project Deprecated – Please Use the Newer Project
+
+> **Notice:** This project is **no longer maintained or updated**.  
+>  
+> Please check out the **new and improved project**:  
+> 👉 [Div Acer Manager](https://github.com/PXDiv/Div-Acer-Manager)  
+>
+> The new project is a complete rewrite and successor of this one. It includes:
+> - 🔐 Major security improvements  
+> - 🧠 A smart background daemon  
+> - ⚙️ Updated and more stable backend drivers  
+> - 🎨 A fully redesigned GUI written in **C#** using **Avalonia UI**  
+> - 🚀 Better performance, usability, and cleaner installation  
+>
+> Thank you for using the original project — please upgrade to the new one for the best experience!
+
+---
+
 A GUI-based front end for managing fan speeds on Acer Nitro and Predator laptops running Linux. This tool simplifies driver handling and fan speed control.
 
 ## **About This Project**
