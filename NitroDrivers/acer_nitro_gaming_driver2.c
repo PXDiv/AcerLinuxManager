@@ -39,28 +39,50 @@ void cdev_create(char * name, int major, int minor,  struct class *class){
 }
 ssize_t cdev_user_write(struct file * file,const char __user * buff, size_t count, loff_t *offset){
     int cdev_minor = MINOR(file->f_path.dentry->d_inode->i_rdev);
-    printk(KERN_INFO"writing to : %d",cdev_minor);
-    char * kbfr=kmalloc(count,GFP_KERNEL);
-    int ispeed =0;
-    if(kbfr==NULL)       // Check before copy
+    int ret, ispeed = 0;
+    char *kbfr = NULL;
+    
+    printk(KERN_INFO "writing to : %d", cdev_minor);
+
+    kbfr = kmalloc(count, GFP_KERNEL);
+    if(!kbfr)
         return -ENOMEM;
-    copy_from_user(kbfr,buff,count);
+
+    // copy_from_user return value check
+    if(copy_from_user(kbfr, buff, count)) {
+        kfree(kbfr);
+        return -EFAULT;
+    }
+
     int ix = strnlen(kbfr, count);
-    if (ix > 0)          // check for 0
-        kbfr[ix-1] = '\0';   // always terminate
-    printk(KERN_INFO"%s",kbfr);
+    if(ix > 0)
+        kbfr[ix-1] = '\0';
+
+    printk(KERN_INFO "%s", kbfr);
+
     switch(cdev_minor){
         case 0:
-            printk(KERN_INFO"CPUFAN");
-            kstrtoint(kbfr,10 ,&ispeed );
-            fan_set_speed(ispeed,1 );
+            printk(KERN_INFO "CPUFAN");
+            ret = kstrtoint(kbfr, 10, &ispeed);
+            if(ret) {
+                kfree(kbfr);
+                return ret;
+            }
+            fan_set_speed(ispeed, 1);
             break;
+            
         case 1:
-            printk(KERN_INFO"GPUFAN");
-            kstrtoint(kbfr,10 ,&ispeed );
-            fan_set_speed(ispeed,4 );
+            printk(KERN_INFO "GPUFAN");
+            ret = kstrtoint(kbfr, 10, &ispeed);
+            if(ret) {
+                kfree(kbfr);
+                return ret;
+            }
+            fan_set_speed(ispeed, 4);
             break;
     }
+    
+    kfree(kbfr); // Memory leak fix
     return count;
 }
 extern int chdev_open(struct inode * inode,struct file * file){
@@ -144,18 +166,35 @@ extern void dy_kbbacklight_set(int mode, int speed, int brg, int drc, int red, i
     wmi_eval_method(20,in);
 }
 int module_startup(void){
+    int status;
+
     if(!wmi_has_guid(WMI_GAMING_GUID))
         return -ENODEV;
-    if(alloc_chrdev_region(&cdev,0 ,2 ,"acernitrogaming" )<0)
+
+    if(alloc_chrdev_region(&cdev, 0, 2, "acernitrogaming") < 0)
         return -ENXIO;
+
     cmajor = MAJOR(cdev);
     cclass = class_create("acernitrogaming");
-    cclass->dev_uevent=chdev_uevent;
-    cdev_create("fan1",cmajor ,0,cclass );
-    cdev_create("fan2",cmajor ,1,cclass );
-    wmi_driver_register(&wdrv);
+    if(IS_ERR(cclass)) {
+        unregister_chrdev_region(cdev, 2);
+        return PTR_ERR(cclass);
+    }
+    
+    cclass->dev_uevent = chdev_uevent;
 
-    printk("Acer Nitro Gaming Functions Wmi Driver Module was loaded");
+    // Void fonksiyonlar direkt çağrılır
+    cdev_create("fan1", cmajor, 0, cclass);
+    cdev_create("fan2", cmajor, 1, cclass);
+
+    status = wmi_driver_register(&wdrv);
+    if(status) {
+        class_destroy(cclass);
+        unregister_chrdev_region(cdev, 2);
+        return status;
+    }
+
+    printk(KERN_INFO "Driver yüklendi");
     return 0;
 }
 void module_finish(void){
