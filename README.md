@@ -72,9 +72,6 @@ This project is a fork of [AcerNitroLinuxGamingDriver](https://github.com/DetuxT
 ## **Compatibility**
 This driver will only work on Acer laptops that use **WMI-based protocols** for fan control.
 
-## **Upcoming Features**
-🔹 **Keyboard lighting control** (future update)
-
 ## **Contributing**
 Pull requests and contributions are welcome! Please ensure your code follows best practices.
 
