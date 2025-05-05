@@ -5,8 +5,8 @@
 > **Notice:** This project is **no longer maintained or updated**.  
 >  
 > Please check out the **new and improved projects**:  
-> 👉 [Div Acer Manager Max](https://github.com/PXDiv/Div-Acer-Manager-Max)
-> 👉 [Div Acer Manager - Fan Controls](https://github.com/PXDiv/Div-Acer-Manager)
+> - 👉 [Div Acer Manager Max](https://github.com/PXDiv/Div-Acer-Manager-Max)
+> - 👉 [Div Acer Manager - Fan Controls](https://github.com/PXDiv/Div-Acer-Manager)
 >
 > The new project is a complete rewrite and successor of this one. It includes:
 > - 🔐 Major security improvements  
