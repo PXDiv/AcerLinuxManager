@@ -1,6 +1,6 @@
 # **Acer Nitro & Predator Fan Control (Linux)**
 
-### ⚠️ Project Deprecated – Please Use the Newer Project
+### ⚠️ Project Deprecated – Please Use the Newer Projects
 
 > **Notice:** This project is **no longer maintained or updated**.  
 >  
